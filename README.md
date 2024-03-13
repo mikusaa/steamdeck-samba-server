@@ -13,15 +13,13 @@
   </a>
 </p>
 
-## Installation
+## 安装
 
-To run the script, simply insert the following command in your SteamDeck terminal:
+在你的 SteamDeck 终端上运行该脚本:
 
- 
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/malordin/steamdeck-samba-server/main/script.sh)"`
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"`
 
-
-This will automatically download and run the script.sh file from the GitHub repository, which will install and configure the Samba server on your SteamDeck.
+将自动下载并运行脚本文件，根据提示操作，自动在你的 SteamDeck 上安装并配置Samba服务。
 
 ## Usage
 
