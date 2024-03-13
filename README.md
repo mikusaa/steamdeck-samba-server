@@ -17,7 +17,9 @@
 
 在你的 SteamDeck 终端上运行该脚本:
 
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"`
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"
+```
 
 将自动下载并运行脚本文件，根据提示操作，自动在你的 SteamDeck 上安装并配置Samba服务。
 
