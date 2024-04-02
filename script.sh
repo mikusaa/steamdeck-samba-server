@@ -27,7 +27,7 @@ else
 
   case "$password_choice" in
     y|Y ) # User answered "yes" or "Y" or "y"
-          read -s -p "请输入您的密码：" password
+          read -s -p "请输入您的密码（密码不会显示）：" password
           echo "$password" | sudo -S echo "Samba 服务器安装中..." ;;
     n|N ) # User answered "no" or "N" or "n"
           echo "该脚本需要您的密码才能正常工作。 请通过 passwd 更改您的密码，然后重试。"
@@ -141,7 +141,7 @@ else
 fi
 
 # Enable and start smb service
-echo "启用并启动 smb 服务..."
+echo "启用并启动 smb 服务中..."
 sudo systemctl enable smb.service
 sudo systemctl start smb.service
 
