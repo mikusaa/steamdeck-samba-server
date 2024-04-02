@@ -11,29 +11,29 @@ ENDCOLOR="\e[0m"
 
 if [ "$1" = "gui" ]; then
   # Script is running with a GUI argument (icon)
-  if zenity --question --width=400 --height=100 --text="This script will install Samba server on your system. Did you change the password via passwd?"; then
+  if zenity --question --width=400 --height=100 --text="该脚本将在您的系统上安装 Samba 服务器。 你是通过passwd修改密码的吗？"; then
     # User answered "yes" or "Y" or "y"
-    password=$(zenity --password --title="Enter your password")
-    echo "$password" | sudo -S echo "Continuing with Samba server installation..."
+    password=$(zenity --password --title="输入您的密码")
+    echo "$password" | sudo -S echo "Samba 服务器安装中..."
   else
     # User answered "no" or "N" or "n"
-    zenity --error --width=400 --height=100 --text="This script requires your password to work correctly. Please change your password via passwd and try again."
+    zenity --error --width=400 --height=100 --text="该脚本需要您的密码才能正常工作。 请通过 passwd 更改您的密码，然后重试。"
     exit 1
   fi
 else
   # Script is running without a GUI argument (console)
-  echo "WARNING: This script will install Samba server on your system."
-  read -p "Did you change the password via passwd? [Y/N] " password_choice
+  echo "警告：此脚本将在您的系统上安装 Samba 服务器。"
+  read -p "你是通过passwd修改密码的吗？ [Y/N] " password_choice
 
   case "$password_choice" in
     y|Y ) # User answered "yes" or "Y" or "y"
-          read -s -p "Please enter your password: " password
-          echo "$password" | sudo -S echo "Continuing with Samba server installation..." ;;
+          read -s -p "请输入您的密码：" password
+          echo "$password" | sudo -S echo "Samba 服务器安装中..." ;;
     n|N ) # User answered "no" or "N" or "n"
-          echo "This script requires your password to work correctly. Please change your password via passwd and try again."
+          echo "该脚本需要您的密码才能正常工作。 请通过 passwd 更改您的密码，然后重试。"
           exit 1 ;;
     * )   # User provided an invalid choice
-          echo "Invalid choice, aborting script." && exit 1 ;;
+          echo "选择无效，正在中止脚本。" && exit 1 ;;
   esac
 fi
 
@@ -42,15 +42,15 @@ fi
 # Check if "deck" user's password has been changed
 if [ "$(sudo grep '^deck:' /etc/shadow | cut -d':' -f2)" = "*" ] || [ "$(sudo grep '^deck:' /etc/shadow | cut -d':' -f2)" = "!" ]; then
     # Prompt user to change "deck" user's password
-    echo "It looks like you haven't changed the password for the 'deck' user yet."
-    read -p "Would you like to change it now? (y/n) " choice
+    echo "您似乎尚未更改 “deck” 用户的密码。"
+    read -p "您现在想更改吗？ (y/n) " choice
     if [ "$choice" = "y" ]; then
         sudo passwd deck
     fi
 fi
 
 # Disable steamos-readonly
-echo "Disabling steamos-readonly..."
+echo "禁用 steamos-readonly 中..."
 sudo steamos-readonly disable
 
 # Edit pacman.conf file
