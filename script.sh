@@ -22,7 +22,7 @@ if [ "$1" = "gui" ]; then
   fi
 else
   # Script is running without a GUI argument (console)
-  echo "警告：此脚本将在您的系统上安装 Samba 服务器。"
+  echo "警告：此脚本将在您的 Steam Dek 系统上安装 Samba 服务器。"
   read -p "你是通过passwd修改密码的吗？ [Y/N] " password_choice
 
   case "$password_choice" in
@@ -50,32 +50,32 @@ if [ "$(sudo grep '^deck:' /etc/shadow | cut -d':' -f2)" = "*" ] || [ "$(sudo gr
 fi
 
 # Disable steamos-readonly
-echo "禁用 steamos-readonly 中..."
+echo "禁用 steamos-readonly 只读模式中..."
 sudo steamos-readonly disable
 
 # Edit pacman.conf file
-echo "Editing pacman.conf file..."
+echo "编辑 pacman.conf 文件..."
 sudo sed -i '/^SigLevel[[:space:]]*=[[:space:]]*Required DatabaseOptional/s/^/#/' /etc/pacman.conf
 sudo sed -i '/^#SigLevel[[:space:]]*=[[:space:]]*Required DatabaseOptional/a\
 SigLevel = TrustAll\
 ' /etc/pacman.conf
 
 # Initialize pacman keys
-echo "Initializing pacman keys..."
+echo "安装 pacman 密钥..."
 sudo pacman-key --init
 
 # Populate pacman keys
-echo "Populating pacman keys..."
+echo "填充 pacman keys..."
 sudo pacman-key --populate archlinux
 
 
 
 # Install samba
-echo "Installing samba..."
+echo "安装 samba..."
 sudo pacman -Sy --noconfirm samba
 
 # Write new smb.conf file
-echo "Writing new smb.conf file..."
+echo "写入 smb.conf 配置..."
 sudo tee /etc/samba/smb.conf > /dev/null <<EOF
 [global]
 netbios name = steamdeck
@@ -93,6 +93,16 @@ force group = deck
 [documents]
 comment = Documents directory
 path = /home/deck/Documents/
+browseable = yes
+read only = no
+create mask = 0777
+directory mask = 0777
+force user = deck
+force group = deck
+
+[pictures]
+comment = Pictures directory
+path = /home/deck/Pictures/
 browseable = yes
 read only = no
 create mask = 0777
@@ -122,7 +132,7 @@ force group = deck
 EOF
 
 
-echo "Adding 'deck' user to samba user database..."
+echo "添加 'deck' 用户至 samba 用户数据库中..."
 if [ "$1" = "gui" ]; then
     password=$(zenity --password --title "Set Samba Password" --width=400)
     (echo "$password"; echo "$password") | sudo smbpasswd -s -a deck
@@ -131,7 +141,7 @@ else
 fi
 
 # Enable and start smb service
-echo "Enabling and starting smb service..."
+echo "启用并启动 smb 服务..."
 sudo systemctl enable smb.service
 sudo systemctl start smb.service
 
@@ -140,19 +150,19 @@ firewall-cmd --reload
 
 
 # Restart smb service
-echo "Restarting smb service..."
+echo "重启 smb 服务..."
 sudo systemctl restart smb.service
 
 # re-enable the readonly filesystem
 sudo steamos-readonly enable
-echo "Filesystem now read-only"
+echo "文件系统现已恢复为只读模式"
 
 
 if [ "$1" = "gui" ]; then
-  zenity --info --width=400 --height=100 --text="Samba server set up successfully! You can access the 'steamapps', 'downloads' and 'mmcblk0p1' folders on your Steam Deck from any device on your local network."
+  zenity --info --width=400 --height=100 --text="Samba server 已成功安装！现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
   else 
-    echo -e "${BOLDGREEN}Samba server set up successfully!${ENDCOLOR} You can access the 'steamapps', 'downloads' and 'mmcblk0p1' folders on your Steam Deck from any device on your local network."
-    read -p "Press Enter to continue..." 
+    echo -e "${BOLDGREEN}Samba server 已成功安装！${ENDCOLOR}现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
+    read -p "按任意键继续..." 
 fi
 
       
