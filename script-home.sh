@@ -11,13 +11,13 @@ ENDCOLOR="\e[0m"
 
 if [ "$1" = "gui" ]; then
   # Script is running with a GUI argument (icon)
-  if zenity --question --width=400 --height=100 --text="该脚本将在您的系统上安装 Samba 服务器。 你是通过passwd修改密码的吗？"; then
+  if zenity --question --width=400 --height=100 --text="该脚本将在您的系统上安装 Samba 服务器。你是通过 passwd 修改密码的吗？"; then
     # User answered "yes" or "Y" or "y"
     password=$(zenity --password --title="输入您的密码")
     echo "$password" | sudo -S echo "Samba 服务器安装中..."
   else
     # User answered "no" or "N" or "n"
-    zenity --error --width=400 --height=100 --text="该脚本需要您的密码才能正常工作。 请通过 passwd 更改您的密码，然后重试。"
+    zenity --error --width=400 --height=100 --text="该脚本需要您的密码才能正常工作。请通过 passwd 更改您的密码，然后重试。"
     exit 1
   fi
 else
@@ -80,39 +80,9 @@ sudo tee /etc/samba/smb.conf > /dev/null <<EOF
 [global]
 netbios name = steamdeck
 
-[steamapps]
-comment = Steam apps directory
-path = /home/deck/.local/share/Steam/steamapps/
-browseable = yes
-read only = no
-create mask = 0777
-directory mask = 0777
-force user = deck
-force group = deck
-
-[documents]
-comment = Documents directory
-path = /home/deck/Documents/
-browseable = yes
-read only = no
-create mask = 0777
-directory mask = 0777
-force user = deck
-force group = deck
-
-[pictures]
-comment = Pictures directory
-path = /home/deck/Pictures/
-browseable = yes
-read only = no
-create mask = 0777
-directory mask = 0777
-force user = deck
-force group = deck
-
-[downloads]
-comment = Downloads directory
-path = /home/deck/Downloads/
+[Home]
+comment = Deck user home directory
+path = /home/deck/
 browseable = yes
 read only = no
 create mask = 0777
@@ -159,9 +129,9 @@ echo "文件系统现已恢复为只读模式"
 
 
 if [ "$1" = "gui" ]; then
-  zenity --info --width=400 --height=100 --text="Samba server 已成功安装！现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
+  zenity --info --width=400 --height=100 --text="Samba server 已成功安装！现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 Home 文件夹以及 mmcblk0p1 文件夹。"
   else 
-    echo -e "${BOLDGREEN}Samba server 已成功安装！${ENDCOLOR}现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
+    echo -e "${BOLDGREEN}Samba server 已成功安装！${ENDCOLOR}现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 Home 文件夹以及 mmcblk0p1 文件夹。"
     read -p "按任意键继续..." 
 fi
 
