@@ -1,11 +1,11 @@
 # Steam Deck Samba Server
 
-这是一个简单的脚本，可在您的 Steam Deck 上设置 Samba 服务器，使您可以轻松地将文件传输到设备或从设备传输文件。
+在 Steam Deck 上一键安装并设置 Samba 服务器，以便通过其他设备访问或传输文件至 Steam Deck 中。
 
 
 ## 安装
 
-在你的 Steam Deck 终端上运行该脚本，自动在你的 Steam Deck 上安装并配置 Samba 服务：
+在你的 Steam Deck 终端上运行该脚本：
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"
@@ -29,7 +29,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-se
 \\steamdeck
 ```
 
-然后系统会提示输入 Steam Deck 用户名和执行脚本过程中设置的密码密码。完成此操作后，即可在电脑上访问 Steam Deck 上的文件。
+系统会提示输入 Steam Deck 用户名和密码。用户名即为 `deck`，密码为执行脚本过程中设置的密码。
+
+完成此操作后，即可在电脑上访问 Steam Deck 上的文件。
 
 ## 贡献
 
