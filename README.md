@@ -11,9 +11,9 @@
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"
 ```
 
-或者，你想直接挂载 `deck` 用户主文件夹，换用以下脚本：
+或者，你想直接共享 `deck` 用户主文件夹，换用以下脚本：
 
-> 这样直接暴露整个用户文件夹，因此请设置稍微复杂一些的密码！
+> 这样将直接暴露整个用户文件夹，因此请设置稍微复杂一些的密码！
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script-home.sh)"
