@@ -5,7 +5,7 @@
 
 ## 安装
 
-在你的 SteamDeck 终端上运行该脚本，自动在你的 Steam Deck 上安装并配置 Samba 服务:
+在你的 Steam Deck 终端上运行该脚本，自动在你的 Steam Deck 上安装并配置 Samba 服务：
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-server/main/script.sh)"
