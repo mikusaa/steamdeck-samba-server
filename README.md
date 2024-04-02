@@ -23,13 +23,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-se
 
 ## 使用
 
-安装 Samba 服务器后，您可以从同一网络上的任何设备连接到它。 只需在计算机上打开文件资源管理器窗口，然后在地址栏中键入以下内容：
+安装 Samba 服务器后，您可以从同一网络上的任何设备连接到它。只需在计算机上打开文件资源管理器窗口，然后在地址栏中键入以下内容：
 
 ```
 \\steamdeck
 ```
 
-然后系统会提示输入 Steam Deck 用户名和密码。完成此操作后，您将能够像访问任何其他共享文件夹一样访问 Steam Deck 上的文件。
+然后系统会提示输入 Steam Deck 用户名和执行脚本过程中设置的密码密码。完成此操作后，即可访问 Steam Deck 上的文件。
 
 ## 贡献
 
