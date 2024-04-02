@@ -159,9 +159,9 @@ echo "文件系统现已恢复为只读模式"
 
 
 if [ "$1" = "gui" ]; then
-  zenity --info --width=400 --height=100 --text="Samba server 已成功安装！现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
+  zenity --info --width=400 --height=100 --text="Samba server 已安装成功！现在，你可以从本地网络上的任何设备中访问 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 SD 卡 mmcblk0p1 文件夹。"
   else 
-    echo -e "${BOLDGREEN}Samba server 已成功安装！${ENDCOLOR}现在你可以从本地网络上的任何设备中访问您 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 mmcblk0p1 文件夹。"
+    echo -e "${BOLDGREEN}Samba server 已安装成功！${ENDCOLOR}现在，你可以从本地网络上的任何设备中访问 Steam Deck 上的 steamapps、downloads、pictures、documents 以及 SD 卡 mmcblk0p1 文件夹。"
     read -p "按任意键继续..." 
 fi
 
