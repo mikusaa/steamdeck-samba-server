@@ -37,4 +37,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/mikusaa/steamdeck-samba-se
 
 ## 许可
 
-该脚本已根据 [MIT 许可证](https://github.com/malordin/steamdeck-samba-server/blob/main/LICENSE) 获得许可。您可以根据需要随意使用、修改和分发它。
+该脚本已根据 [MIT 许可证](https://github.com/mikusaa/steamdeck-samba-server/blob/main/LICENSE) 获得许可。您可以根据需要随意使用、修改和分发它。
